@@ -39,6 +39,9 @@
    <property name="text">
     <string>0</string>
    </property>
+   <property name="alignment">
+    <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+   </property>
   </widget>
   <widget class="QPushButton" name="pBtn_1">
    <property name="geometry">
@@ -400,11 +403,11 @@
     <string>7</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="pBtn_Pi">
+  <widget class="QPushButton" name="pBtn_AC">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>120</y>
+     <x>200</x>
+     <y>70</y>
      <width>50</width>
      <height>50</height>
     </rect>
@@ -421,7 +424,7 @@
     </font>
    </property>
    <property name="text">
-    <string>π</string>
+    <string>AC</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pBtn_9">
@@ -667,8 +670,8 @@
   <widget class="QPushButton" name="pBtn_exp">
    <property name="geometry">
     <rect>
-     <x>200</x>
-     <y>70</y>
+     <x>0</x>
+     <y>120</y>
      <width>50</width>
      <height>50</height>
     </rect>

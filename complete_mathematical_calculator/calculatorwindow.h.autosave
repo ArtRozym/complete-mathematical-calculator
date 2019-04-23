@@ -24,10 +24,6 @@ private slots:
     void operations();
 
     //книпки
-    void on_pBtn_0_clicked();
-
-    void on_pBtn_2_clicked();
-
     void on_pBtn_sin_clicked();
 
     void on_pBtn_cos_clicked();
@@ -42,29 +38,13 @@ private slots:
 
     void on_pBtn_AC_clicked();
 
-    void on_pBtn_7_clicked();
-
-    void on_pBtn_8_clicked();
-
-    void on_pBtn_9_clicked();
-
     void on_pBtn_share_clicked();
 
     void on_pBtn_nFactorial_clicked();
 
-    void on_pBtn_4_clicked();
-
-    void on_pBtn_5_clicked();
-
-    void on_pBtn_6_clicked();
-
     void on_pBtn_multiply_clicked();
 
     void on_pBtn_power_clicked();
-
-    void on_pBtn_1_clicked();
-
-    void on_pBtn_3_clicked();
 
     void on_pBtn_add_clicked();
 
