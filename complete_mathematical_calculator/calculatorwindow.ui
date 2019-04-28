@@ -682,9 +682,9 @@ QPushButton:pressed {
   <widget class="QPushButton" name="pBtn_plusOrMinus">
    <property name="geometry">
     <rect>
-     <x>0</x>
+     <x>50</x>
      <y>270</y>
-     <width>100</width>
+     <width>50</width>
      <height>50</height>
     </rect>
    </property>
@@ -965,6 +965,42 @@ QPushButton:pressed {
    </property>
    <property name="text">
     <string>√</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pBtn_oneX">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>270</y>
+     <width>50</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton {
+  background-color: rgb(255, 151, 157);
+  color: white; 
+  border: 1px solid gray;
+}
+
+QPushButton:pressed {
+    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                      stop: 0 #FF7832, stop: 1 #FF9739);
+}</string>
+   </property>
+   <property name="text">
+    <string>1/x</string>
    </property>
   </widget>
  </widget>

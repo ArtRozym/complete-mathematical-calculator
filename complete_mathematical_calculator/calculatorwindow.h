@@ -38,18 +38,6 @@ private slots:
 
     void on_pBtn_AC_clicked();
 
-    void on_pBtn_share_clicked();
-
-    void on_pBtn_nFactorial_clicked();
-
-    void on_pBtn_multiply_clicked();
-
-    void on_pBtn_power_clicked();
-
-    void on_pBtn_add_clicked();
-
-    void on_pBtn_root_clicked();
-
     void on_pBtn_point_clicked();
 
     void on_pBtn_subtract_clicked();

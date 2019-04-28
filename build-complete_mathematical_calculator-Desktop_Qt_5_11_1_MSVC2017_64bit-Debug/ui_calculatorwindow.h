@@ -50,6 +50,7 @@ public:
     QPushButton *pBtn_tan;
     QPushButton *pBtn_power;
     QPushButton *pBtn_root;
+    QPushButton *pBtn_oneX;
 
     void setupUi(QDialog *CalculatorWindow)
     {
@@ -309,7 +310,7 @@ public:
 "}"));
         pBtn_plusOrMinus = new QPushButton(CalculatorWindow);
         pBtn_plusOrMinus->setObjectName(QStringLiteral("pBtn_plusOrMinus"));
-        pBtn_plusOrMinus->setGeometry(QRect(0, 270, 100, 50));
+        pBtn_plusOrMinus->setGeometry(QRect(50, 270, 50, 50));
         sizePolicy.setHeightForWidth(pBtn_plusOrMinus->sizePolicy().hasHeightForWidth());
         pBtn_plusOrMinus->setSizePolicy(sizePolicy);
         pBtn_plusOrMinus->setFont(font1);
@@ -435,6 +436,22 @@ public:
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #FF7832, stop: 1 #FF9739);\n"
 "}"));
+        pBtn_oneX = new QPushButton(CalculatorWindow);
+        pBtn_oneX->setObjectName(QStringLiteral("pBtn_oneX"));
+        pBtn_oneX->setGeometry(QRect(0, 270, 50, 50));
+        sizePolicy.setHeightForWidth(pBtn_oneX->sizePolicy().hasHeightForWidth());
+        pBtn_oneX->setSizePolicy(sizePolicy);
+        pBtn_oneX->setFont(font1);
+        pBtn_oneX->setStyleSheet(QLatin1String("QPushButton {\n"
+"  background-color: rgb(255, 151, 157);\n"
+"  color: white; \n"
+"  border: 1px solid gray;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #FF7832, stop: 1 #FF9739);\n"
+"}"));
 
         retranslateUi(CalculatorWindow);
 
@@ -474,6 +491,7 @@ public:
         pBtn_tan->setText(QApplication::translate("CalculatorWindow", "tan", nullptr));
         pBtn_power->setText(QApplication::translate("CalculatorWindow", "^", nullptr));
         pBtn_root->setText(QApplication::translate("CalculatorWindow", "\342\210\232", nullptr));
+        pBtn_oneX->setText(QApplication::translate("CalculatorWindow", "1/x", nullptr));
     } // retranslateUi
 
 };
