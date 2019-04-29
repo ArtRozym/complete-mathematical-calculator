@@ -51,6 +51,7 @@ public:
     QPushButton *pBtn_power;
     QPushButton *pBtn_root;
     QPushButton *pBtn_oneX;
+    QLabel *labelAll;
 
     void setupUi(QDialog *CalculatorWindow)
     {
@@ -64,7 +65,7 @@ public:
         CalculatorWindow->setSizePolicy(sizePolicy);
         label = new QLabel(CalculatorWindow);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(0, 0, 300, 70));
+        label->setGeometry(QRect(0, 30, 300, 40));
         QFont font;
         font.setPointSize(25);
         label->setFont(font);
@@ -102,7 +103,7 @@ public:
 "}"));
         pBtn_cos = new QPushButton(CalculatorWindow);
         pBtn_cos->setObjectName(QStringLiteral("pBtn_cos"));
-        pBtn_cos->setGeometry(QRect(50, 70, 50, 50));
+        pBtn_cos->setGeometry(QRect(100, 70, 50, 50));
         sizePolicy.setHeightForWidth(pBtn_cos->sizePolicy().hasHeightForWidth());
         pBtn_cos->setSizePolicy(sizePolicy);
         pBtn_cos->setFont(font1);
@@ -183,7 +184,7 @@ public:
         pBtn_Pi->setSizePolicy(sizePolicy);
         pBtn_Pi->setFont(font1);
         pBtn_Pi->setStyleSheet(QLatin1String("QPushButton {\n"
-"  background-color: rgb(255, 151, 157);\n"
+"  background-color: rgb(25, 11, 157);\n"
 "  color: white; \n"
 "  border: 1px solid gray;\n"
 "}\n"
@@ -217,7 +218,7 @@ public:
         pBtn_nFactorial->setSizePolicy(sizePolicy);
         pBtn_nFactorial->setFont(font1);
         pBtn_nFactorial->setStyleSheet(QLatin1String("QPushButton {\n"
-"  background-color: rgb(255, 151, 157);\n"
+"  background-color: rgb(25, 11, 157);\n"
 "  color: white; \n"
 "  border: 1px solid gray;\n"
 "}\n"
@@ -326,7 +327,7 @@ public:
 "}"));
         pBtn_sin = new QPushButton(CalculatorWindow);
         pBtn_sin->setObjectName(QStringLiteral("pBtn_sin"));
-        pBtn_sin->setGeometry(QRect(0, 70, 50, 50));
+        pBtn_sin->setGeometry(QRect(50, 70, 50, 50));
         sizePolicy.setHeightForWidth(pBtn_sin->sizePolicy().hasHeightForWidth());
         pBtn_sin->setSizePolicy(sizePolicy);
         pBtn_sin->setFont(font1);
@@ -342,12 +343,12 @@ public:
 "}"));
         pBtn_log = new QPushButton(CalculatorWindow);
         pBtn_log->setObjectName(QStringLiteral("pBtn_log"));
-        pBtn_log->setGeometry(QRect(150, 70, 50, 50));
+        pBtn_log->setGeometry(QRect(0, 70, 50, 50));
         sizePolicy.setHeightForWidth(pBtn_log->sizePolicy().hasHeightForWidth());
         pBtn_log->setSizePolicy(sizePolicy);
         pBtn_log->setFont(font1);
         pBtn_log->setStyleSheet(QLatin1String("QPushButton {\n"
-"  background-color: rgb(255, 151, 157);\n"
+"  background-color: rgb(25, 151, 157);\n"
 "  color: white; \n"
 "  border: 1px solid gray;\n"
 "}\n"
@@ -379,7 +380,7 @@ public:
         pBtn_exp->setSizePolicy(sizePolicy);
         pBtn_exp->setFont(font1);
         pBtn_exp->setStyleSheet(QLatin1String("QPushButton {\n"
-"  background-color: rgb(255, 151, 157);\n"
+"  background-color: rgb(25, 151, 157);\n"
 "  color: white; \n"
 "  border: 1px solid gray;\n"
 "}\n"
@@ -390,7 +391,7 @@ public:
 "}"));
         pBtn_tan = new QPushButton(CalculatorWindow);
         pBtn_tan->setObjectName(QStringLiteral("pBtn_tan"));
-        pBtn_tan->setGeometry(QRect(100, 70, 50, 50));
+        pBtn_tan->setGeometry(QRect(150, 70, 50, 50));
         sizePolicy.setHeightForWidth(pBtn_tan->sizePolicy().hasHeightForWidth());
         pBtn_tan->setSizePolicy(sizePolicy);
         pBtn_tan->setFont(font1);
@@ -443,7 +444,7 @@ public:
         pBtn_oneX->setSizePolicy(sizePolicy);
         pBtn_oneX->setFont(font1);
         pBtn_oneX->setStyleSheet(QLatin1String("QPushButton {\n"
-"  background-color: rgb(255, 151, 157);\n"
+"  background-color: rgb(25, 11, 157);\n"
 "  color: white; \n"
 "  border: 1px solid gray;\n"
 "}\n"
@@ -452,6 +453,12 @@ public:
 "    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
 "                                      stop: 0 #FF7832, stop: 1 #FF9739);\n"
 "}"));
+        labelAll = new QLabel(CalculatorWindow);
+        labelAll->setObjectName(QStringLiteral("labelAll"));
+        labelAll->setGeometry(QRect(0, 0, 300, 30));
+        labelAll->setFont(font);
+        labelAll->setLayoutDirection(Qt::LeftToRight);
+        labelAll->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         retranslateUi(CalculatorWindow);
 
@@ -479,7 +486,7 @@ public:
         pBtn_7->setText(QApplication::translate("CalculatorWindow", "7", nullptr));
         pBtn_AC->setText(QApplication::translate("CalculatorWindow", "AC", nullptr));
         pBtn_9->setText(QApplication::translate("CalculatorWindow", "9", nullptr));
-        pBtn_multiply->setText(QApplication::translate("CalculatorWindow", "x", nullptr));
+        pBtn_multiply->setText(QApplication::translate("CalculatorWindow", "*", nullptr));
         pBtn_8->setText(QApplication::translate("CalculatorWindow", "8", nullptr));
         pBtn_interest->setText(QApplication::translate("CalculatorWindow", "%", nullptr));
         pBtn_share->setText(QApplication::translate("CalculatorWindow", "\303\267", nullptr));
@@ -489,9 +496,10 @@ public:
         pBtn_clearOne->setText(QApplication::translate("CalculatorWindow", "<-", nullptr));
         pBtn_exp->setText(QApplication::translate("CalculatorWindow", "exp", nullptr));
         pBtn_tan->setText(QApplication::translate("CalculatorWindow", "tan", nullptr));
-        pBtn_power->setText(QApplication::translate("CalculatorWindow", "^", nullptr));
+        pBtn_power->setText(QApplication::translate("CalculatorWindow", "x^2", nullptr));
         pBtn_root->setText(QApplication::translate("CalculatorWindow", "\342\210\232", nullptr));
         pBtn_oneX->setText(QApplication::translate("CalculatorWindow", "1/x", nullptr));
+        labelAll->setText(QApplication::translate("CalculatorWindow", "0", nullptr));
     } // retranslateUi
 
 };

@@ -12,18 +12,30 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QScrollArea>
+#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_VectorWindow
 {
 public:
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
 
     void setupUi(QDialog *VectorWindow)
     {
         if (VectorWindow->objectName().isEmpty())
             VectorWindow->setObjectName(QStringLiteral("VectorWindow"));
-        VectorWindow->resize(400, 300);
+        VectorWindow->resize(600, 400);
+        scrollArea = new QScrollArea(VectorWindow);
+        scrollArea->setObjectName(QStringLiteral("scrollArea"));
+        scrollArea->setGeometry(QRect(0, 0, 600, 400));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 598, 398));
+        scrollArea->setWidget(scrollAreaWidgetContents);
 
         retranslateUi(VectorWindow);
 

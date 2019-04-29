@@ -22,25 +22,16 @@ private slots:
     void digits_numbers();
     void math_operation();
     void operations();
+    void standartOperations();
+    void trigonometryOperations();
 
     //книпки
-    void on_pBtn_sin_clicked();
-
-    void on_pBtn_cos_clicked();
-
-    void on_pBtn_tan_clicked();
-
-    void on_pBtn_log_clicked();
-
-    void on_pBtn_exp_clicked();
 
     void on_pBtn_clearOne_clicked();
 
     void on_pBtn_AC_clicked();
 
     void on_pBtn_point_clicked();
-
-    void on_pBtn_subtract_clicked();
 
     void on_pBtn_equals_clicked();
 

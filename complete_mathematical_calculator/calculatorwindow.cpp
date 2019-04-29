@@ -27,18 +27,24 @@ CalculatorWindow::CalculatorWindow(QWidget *parent) :
     connect(ui->pBtn_nFactorial, SIGNAL(clicked()), this, SLOT(operations()));
     connect(ui->pBtn_root, SIGNAL(clicked()), this, SLOT(operations()));
     connect(ui->pBtn_oneX, SIGNAL(clicked()), this, SLOT(operations()));
+    connect(ui->pBtn_power, SIGNAL(clicked()), this, SLOT(operations()));
+
+    connect(ui->pBtn_sin, SIGNAL(clicked()), this, SLOT(trigonometryOperations()));
+    connect(ui->pBtn_cos, SIGNAL(clicked()), this, SLOT(trigonometryOperations()));
+    connect(ui->pBtn_tan, SIGNAL(clicked()), this, SLOT(trigonometryOperations()));
+
+    connect(ui->pBtn_exp, SIGNAL(clicked()), this, SLOT(standartOperations()));
+    connect(ui->pBtn_log, SIGNAL(clicked()), this, SLOT(standartOperations()));
 
     connect(ui->pBtn_add, SIGNAL(clicked()), this, SLOT(math_operation()));
     connect(ui->pBtn_subtract, SIGNAL(clicked()), this, SLOT(math_operation()));
     connect(ui->pBtn_multiply, SIGNAL(clicked()), this, SLOT(math_operation()));
     connect(ui->pBtn_share, SIGNAL(clicked()), this, SLOT(math_operation()));
-    connect(ui->pBtn_power, SIGNAL(clicked()), this, SLOT(math_operation()));
 
     ui->pBtn_add->setCheckable(true);
     ui->pBtn_subtract->setCheckable(true);
     ui->pBtn_multiply->setCheckable(true);
     ui->pBtn_share->setCheckable(true);
-    ui->pBtn_power->setCheckable(true);
 
 }
 
@@ -52,7 +58,11 @@ void CalculatorWindow::digits_numbers()
     QPushButton *button = (QPushButton *)sender();
 
     double allNumbers;
-    QString newLabel;
+    QString newLabel, startLabel;
+
+    startLabel = ui->label->text();
+    if(startLabel == "0")
+        startLabel = "";
 
     //для того щоб можна було поставити . після стартового 0
     if(ui->label->text().contains(".")&&button->text()=="0")
@@ -63,9 +73,8 @@ void CalculatorWindow::digits_numbers()
     {
         if((ui->label->text()=="+")||
                 (ui->label->text()=="-")||
-                (ui->label->text()=="^")||
                 (ui->label->text()=="÷")||
-                (ui->label->text()=="x"))
+                (ui->label->text()=="*"))
             ui->label->setText("");
 
         allNumbers = (ui->label->text() + button->text()).toDouble();
@@ -73,6 +82,7 @@ void CalculatorWindow::digits_numbers()
     }
 
     ui->label->setText(newLabel);
+    ui->labelAll->setText(startLabel + newLabel);
 
 }
 
@@ -86,6 +96,7 @@ void CalculatorWindow::math_operation()
     newLabel = button->text();
 
     ui->label->setText(newLabel);
+    ui->labelAll->setText(ui->labelAll->text() + newLabel);
     button->setChecked(true);
 
 }
@@ -110,6 +121,7 @@ void CalculatorWindow::operations()
         for(int i = 1; i<=allNumber; i++)
             numberOne *= i;
     }
+
     else if(button->text()=="√")
     {
         if(allNumber<0.0)
@@ -117,38 +129,62 @@ void CalculatorWindow::operations()
         else
             numberOne = std::sqrt(allNumber);
     }
+
     else if(button->text()=="1/x")
         numberOne = 1.0/allNumber;
 
+    else if(button->text()=="x^2")
+        numberOne = pow(allNumber, 2);
+
+
     newLabel = QString::number(numberOne, 'g', 15);
     ui->label->setText(newLabel);
+    ui->labelAll->setText(newLabel);
 
 }
 
-
-void CalculatorWindow::on_pBtn_sin_clicked()
+void CalculatorWindow::trigonometryOperations()
 {
+    QPushButton *button = (QPushButton *)sender();
+    double allNumber;
+    QString newLabel, startLabel;
 
+    double const Pi = 3.14159265; //значення П/2
+
+    allNumber = (ui->label->text()).toDouble();
+    startLabel = ui->label->text();
+
+    if(button->text() == "sin")
+        numberOne = sin(allNumber * Pi/180);
+    else if(button->text() == "cos")
+        numberOne = cos(allNumber * Pi/180);
+    else if(button->text() == "tan")
+        numberOne = tan(allNumber * Pi/180);
+
+    if(numberOne<0.0001)
+        numberOne = 0;
+
+    newLabel = QString::number(numberOne, 'g', 5);
+
+    ui->label->setText(newLabel);
+    ui->labelAll->setText(button->text() + "(" + startLabel + ") = " + newLabel);
 }
 
-void CalculatorWindow::on_pBtn_cos_clicked()
+void CalculatorWindow::standartOperations()
 {
+    QPushButton *button = (QPushButton *)sender();
+    double allNumber;
+    QString newLabel;
 
-}
+    allNumber = (ui->label->text()).toDouble();
 
-void CalculatorWindow::on_pBtn_tan_clicked()
-{
+    if(button->text() == "log")
+            numberOne = log10(allNumber);
+    else if(button->text() == "exp")
+            numberOne = exp(allNumber);
 
-}
-
-void CalculatorWindow::on_pBtn_log_clicked()
-{
-
-}
-
-void CalculatorWindow::on_pBtn_exp_clicked()
-{
-
+   newLabel = QString::number(numberOne, 'g', 15);
+   ui->label->setText(newLabel);
 }
 
 void CalculatorWindow::on_pBtn_clearOne_clicked()
@@ -159,25 +195,18 @@ void CalculatorWindow::on_pBtn_clearOne_clicked()
 void CalculatorWindow::on_pBtn_AC_clicked()
 {
     ui->label->setText("0");
+    ui->labelAll->setText("0");
     ui->pBtn_add->setCheckable(false);
     ui->pBtn_subtract->setCheckable(false);
     ui->pBtn_multiply->setCheckable(false);
     ui->pBtn_share->setCheckable(false);
-    ui->pBtn_power->setCheckable(false);
     numberOne = 0.0;
 }
 
-//потрібно переписати щоб не можна було ставити після знаку
 void CalculatorWindow::on_pBtn_point_clicked()
 {
-    //перевіряємо чи вже є . якщо не має то дозволяємо додати
     if(!(ui->label->text().contains('.')))
         ui->label->setText(ui->label->text() + ".");
-}
-
-void CalculatorWindow::on_pBtn_subtract_clicked()
-{
-
 }
 
 void CalculatorWindow::on_pBtn_equals_clicked()
@@ -192,6 +221,7 @@ void CalculatorWindow::on_pBtn_equals_clicked()
         numberOne = result;
         newLabel = QString::number(result, 'g', 15);
         ui->label->setText(newLabel);
+        ui->labelAll->setText(newLabel);
         ui->pBtn_add->setChecked(false);
     }
     else if(ui->pBtn_subtract->isChecked())
@@ -200,6 +230,7 @@ void CalculatorWindow::on_pBtn_equals_clicked()
         numberOne = result;
         newLabel = QString::number(result, 'g', 15);
         ui->label->setText(newLabel);
+        ui->labelAll->setText(newLabel);
         ui->pBtn_subtract->setChecked(false);
     }
     else if(ui->pBtn_multiply->isChecked())//працює лише для додатнього цілого множника
@@ -208,29 +239,26 @@ void CalculatorWindow::on_pBtn_equals_clicked()
         numberOne = result;
         newLabel = QString::number(result, 'g', 15);
         ui->label->setText(newLabel);
+        ui->labelAll->setText(newLabel);
         ui->pBtn_multiply->setChecked(false);
     }
     else if(ui->pBtn_share->isChecked())//працює лише для додатнього цілого знаменика
     {
         if(numberTwo == 0)
+        {
             ui->label->setText("0");
+            ui->labelAll->setText("0");
+        }
         else
         {
             result = numberOne / numberTwo;
             numberOne = result;
             newLabel = QString::number(result, 'g', 15);
             ui->label->setText(newLabel);
+            ui->labelAll->setText(newLabel);
         }
 
         ui->pBtn_share->setChecked(false);
-    }
-    else if(ui->pBtn_power->isChecked())//працює лише для додатніх цілих степенів
-    {
-        result = pow(numberOne, numberTwo);
-        numberOne = result;
-        newLabel = QString::number(result, 'g', 15);
-        ui->label->setText(newLabel);
-        ui->pBtn_power->setChecked(false);
     }
 
 }
